@@ -5,6 +5,7 @@ import {
     Param,
     Post,
     Put,
+    Delete,
   } from '@nestjs/common';
   import { UsersService } from './users.service';
   import { Users } from '../users';
@@ -32,5 +33,10 @@ import {
     @Put()
     async update(@Body('user') user: User): Promise<void> {
       this.usersService.update(user);
+    }
+  
+    @Delete(':id')
+    async delete(@Param('id') id: number): Promise<void> {
+      this.usersService.delete(id);
     }
   }

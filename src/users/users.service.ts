@@ -36,4 +36,13 @@ export class UsersService {
 
         throw new Error('No record found to update');
     }
+
+    delete(id: number): Promise<Users> {      
+        if (this.users.findOne(id)) {
+            this.users.delete(id);
+            return;
+        }
+  
+      throw new Error('No record found to delete');
+    }
 }
