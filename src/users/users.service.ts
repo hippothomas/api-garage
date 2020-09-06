@@ -1,42 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
-import { User } from '../user';
-import { Users } from '../users';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Users } from './users.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-    private readonly users: Users = {
-        1: {
-            id: 1,
-            firstname: 'Hippolyte',
-            lastname: 'Thomas',
-        },
-        2: {
-            id: 2,
-            firstname: 'John',
-            lastname: 'Doe',
-        },
-        3: {
-            id: 3,
-            firstname: 'Jonnie',
-            lastname: 'Doe',
-        },
-    };
+    constructor(
+        @InjectRepository(Users)
+        private readonly users: Repository<Users>,
+    ) {}
 
-    findAll(): Users {
-        return this.users;
+    findAll(): Promise<Users[]> {
+        return this.users.find();
     }
 
-    create(newUser: User): void {
-        const id = uuidv4();
-        this.users[id] = {
-        ...newUser,
-        id,
-        };
+    create(newUsers: Users): Promise<Users> {
+        return this.users.save(newUsers);
     }
 
-    find(id: number): User {
-        const record: User = this.users[id];
+    find(id: number): Promise<Users> {
+        const record = this.users.findOne(id);
 
         if (record) {
             return record;
@@ -45,9 +28,9 @@ export class UsersService {
         throw new Error('No record found');
     }
 
-    update(updatedUser: User): void {
-        if (this.users[updatedUser.id]) {
-            this.users[updatedUser.id] = updatedUser;
+    update(updatedUser: Users): Promise<Users> {
+        if (this.users.findOne(updatedUser.id)) {
+            this.users.save(updatedUser);
             return;
         }
 
