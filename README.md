@@ -32,19 +32,23 @@ La variable "PORT" étant le port sur lequel lancer le projet et les variables c
 Paramètres:
 ```JSON
 {
-    "lastname": "nom",
-    "firstname": "prenom",
-    "vehicules": [],
+    "user": {
+        "lastname": "nom",
+        "firstname": "prenom",
+        "vehicules": [],
+    }
 }
 ```
 - ```/users``` : [PUT] met à jour l'utilisateur<br/>
 Paramètres:
 ```JSON
 {
-    "id": id,
-    "lastname": "nom",
-    "firstname": "prenom",
-    "vehicules": [],
+    "user": {
+        "id": id,
+        "lastname": "nom",
+        "firstname": "prenom",
+        "vehicules": [],
+    }
 }
 ```
 - ```/users/<id>``` : [GET] affiche l'utilisateur
@@ -58,17 +62,21 @@ Note : "vehicules" est un paramètre optionnel contenant une liste d'objets en J
 Paramètres:
 ```JSON
 {
-    "marque": "marque",
-    "modeleNum": "numéro de modèle",
+    "vehicule" : {
+        "marque": "marque",
+        "modeleNum": "numéro de modèle",
+    }
 }
 ```
 - ```/vehicules``` : [PUT] met à jour le vehicule<br/>
 Paramètres:
 ```JSON
 {
-    "id": id,
-    "marque": "marque",
-    "modeleNum": "numéro de modèle",
+    "vehicule" : {
+        "id": id,
+        "marque": "marque",
+        "modeleNum": "numéro de modèle",
+    }
 }
 ```
 - ```/vehicules/<id>``` : [GET] affiche le vehicule

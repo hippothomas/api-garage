@@ -26,8 +26,8 @@ import {
     }
   
     @Post()
-    async create(@Body('vehicule') vehicule: Vehicule): Promise<void> {
-      this.vehiculesService.create(vehicule);
+    async create(@Body('vehicule') vehicule: Vehicule): Promise<Vehicule> {
+      return this.vehiculesService.create(vehicule);
     }
   
     @Put()

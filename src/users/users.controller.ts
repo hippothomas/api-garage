@@ -26,8 +26,8 @@ import {
     }
   
     @Post()
-    async create(@Body('user') user: User): Promise<void> {
-      this.usersService.create(user);
+    async create(@Body('user') user: User): Promise<User> {
+      return this.usersService.create(user);
     }
   
     @Put()
