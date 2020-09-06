@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { VehiculesModule } from './vehicules/vehicules.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,6 +19,7 @@ dotenv.config();
       synchronize: true,
     }),
     UsersModule,
+    VehiculesModule,
   ],
   controllers: [],
   providers: [],

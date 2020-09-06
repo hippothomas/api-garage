@@ -11,7 +11,7 @@ export class UsersService {
     ) {}
 
     findAll(): Promise<Users[]> {
-        return this.users.find();
+        return this.users.find({ relations: ["vehicules"] });
     }
 
     create(newUsers: Users): Promise<Users> {
@@ -19,7 +19,7 @@ export class UsersService {
     }
 
     find(id: number): Promise<Users> {
-        const record = this.users.findOne(id);
+        const record = this.users.findOne({ where: { id }, relations: ["vehicules"] });
 
         if (record) {
             return record;

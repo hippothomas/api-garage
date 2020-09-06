@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Vehicules } from 'src/vehicules/vehicules.entity';
 
 @Entity()
 export class Users {
@@ -10,4 +11,8 @@ export class Users {
 
   @Column()
   lastname: string;
+
+  @ManyToMany(type => Vehicules)
+  @JoinTable()
+  vehicules: Vehicules[];
 }
